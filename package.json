@@ -1,6 +1,6 @@
 {
   "name": "th-codebox-readonly",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "license": "ISC",
   "description": "Code syntax highlighting tool for Editor.js forked from a repository (https://github.com/HarveyRDonnelly/codebox) now support readOnly mode",
   "keywords": [
@@ -8,7 +8,8 @@
     "Code",
     "Code Syntax",
     "Code highlight",
-    "Syntax highlight"
+    "Syntax highlight",
+    "readOnly"
   ],
   "author": "Kenmogne Thimotee <kenmognethimotee@gmail.com>",
   "contributors": [],

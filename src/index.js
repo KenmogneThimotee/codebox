@@ -79,7 +79,7 @@ class CodeBox {
     this.api.listeners.on(this.codeArea, 'paste', event => this._handleCodeAreaPaste(event), false);
 
     if(this.readOnly) {
-      this.codeArea.setAttribute('contenteditable', false);
+      this.codeArea.setAttribute('contenteditable', true);
     } else {
       this.codeArea.setAttribute('contenteditable', true);
     }
