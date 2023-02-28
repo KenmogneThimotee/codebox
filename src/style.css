@@ -13,6 +13,7 @@
   border: none !important;
   outline: none !important;
   font: 14px monospace;
+  overflow-x: scroll;
 }
 
 .codeBoxSelectDiv{

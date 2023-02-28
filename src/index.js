@@ -18,11 +18,13 @@ class CodeBox {
     this.api = api;
     this.readOnly = readOnly;
     this.config = {
+      language: config.language && typeof config.language === 'boolean' ? config.language : false,
       themeName: config.themeName && typeof config.themeName === 'string' ? config.themeName : '',
       themeURL: config.themeURL && typeof config.themeURL === 'string' ? config.themeURL : '',
       useDefaultTheme: (config.useDefaultTheme && typeof config.useDefaultTheme === 'string'
         && DEFAULT_THEMES.includes(config.useDefaultTheme.toLowerCase())) ? config.useDefaultTheme : 'dark',
     };
+    console.log("Code box config : ", this.config)
     this.data = {
       code: data.code && typeof data.code === 'string' ? data.code : '',
       language: data.language && typeof data.language === 'string' ? data.language : 'Auto-detect',
@@ -33,7 +35,7 @@ class CodeBox {
     this.codeArea = document.createElement('div');
     this.selectInput = document.createElement('input');
     this.selectDropIcon = document.createElement('i');
-
+                                 
     this._injectHighlightJSScriptElement();
     this._injectHighlightJSCSSElement();
 
@@ -69,7 +71,8 @@ class CodeBox {
 
   render(){
     const codeAreaHolder = document.createElement('pre');
-    const languageSelect = this._createLanguageSelectElement();
+
+    
 
     codeAreaHolder.setAttribute('class', 'codeBoxHolder');
     this.codeArea.setAttribute('class', `codeBoxTextArea ${ this.config.useDefaultTheme } ${ this.data.language }`);
@@ -79,13 +82,18 @@ class CodeBox {
     this.api.listeners.on(this.codeArea, 'paste', event => this._handleCodeAreaPaste(event), false);
 
     if(this.readOnly) {
-      this.codeArea.setAttribute('contenteditable', true);
+      this.codeArea.setAttribute('contenteditable', false);
     } else {
       this.codeArea.setAttribute('contenteditable', true);
     }
 
     codeAreaHolder.appendChild(this.codeArea);
-    codeAreaHolder.appendChild(languageSelect);
+
+    if(!this.config.language){
+      const languageSelect = this._createLanguageSelectElement();
+      codeAreaHolder.appendChild(languageSelect);
+    }
+    
 
     return codeAreaHolder;
   }
